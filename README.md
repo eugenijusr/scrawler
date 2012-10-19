@@ -41,7 +41,7 @@ Lookup will return a page hash like this one:
 
 1. Clone git repo.
 
-		git clone git@github.com:eugenijusr/scrawler.git
+		git clone git://github.com/eugenijusr/scrawler.git
 		
 2. cd project dir.
 
