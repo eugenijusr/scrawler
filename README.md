@@ -27,14 +27,14 @@ Usage
 Lookup will return a page hash like this one:
 
 		page = {
-			:url => "https://www.github.com",			# Page URL.
-			:title => "GitHub · Social Coding",		# Page title.
-			:links => [..],												# Links.
-			:styles => [..],											# CSS files files.
-			:scripts => [..],											# JavaScript files.
-			:images => [..],											# Images.
-			:targets => [..],											# Pages this page links to (references to other page hashed).
-			:sources => [..]											# Pages linking into this page (references to other page hashes).
+			:url => "https://www.github.com",    # Page URL.
+			:title => "GitHub · Social Coding",  # Page title.
+			:links => [..],                      # Links.
+			:styles => [..],                     # CSS files files.
+			:scripts => [..],                    # JavaScript files.
+			:images => [..],                     # Images.
+			:targets => [..],                    # Pages this page links to (references to other page hashed).
+			:sources => [..]                     # Pages linking into this page (references to other page hashes).
 		}
 		
 ### As a standalone CLI app ###
