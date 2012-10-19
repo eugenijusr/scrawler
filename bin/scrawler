@@ -1,0 +1,87 @@
+#!/usr/bin/env ruby
+require 'scrawler'
+
+module Scrawler
+  
+  crawler = nil
+  
+  puts "Welcome to Scrawler!"
+  puts "--------------------"
+  puts "Usage instructions:"
+  puts "crawl [host]   Crawls the specified site."
+  puts "lookup [url]  Looks up the URL within the crawled site."
+  puts "exit          Exits the app."
+  
+  while input = gets.chomp
+    begin
+      if input == nil or input == ""
+        next
+      end
+      
+      params = input.split(" ")
+      case params[0].downcase
+      when "crawl"
+        crawler = Crawler.new(params[1])
+        crawler.crawl
+      when "lookup"
+        unless crawler
+          puts "Please crawl first."
+        else
+          page = crawler.lookup(params[1])
+          if page
+            puts "URL: " + page[:url].to_s
+            puts "Title: " + page[:title]
+            puts "Links:"
+            page[:links].each do |link|
+              puts link
+            end
+            puts
+            puts "##############################"
+            puts "Pages linked to:"
+            puts "##############################"
+            page[:targets].each do |target|
+              puts target[:url].to_s + " - " + target[:title]
+            end
+            puts
+            puts "##############################"
+            puts "Pages linking in:"
+            puts "##############################"
+            page[:sources].each do |source|
+              puts source[:url].to_s + " - " + source[:title]
+            end
+            puts
+            puts "##############################"
+            puts "Styles:"
+            puts "##############################"
+            page[:styles].each do |style|
+              puts style.to_s
+            end
+            puts
+            puts "##############################"
+            puts "Scripts:"
+            puts "##############################"
+            page[:scripts].each do |script|
+              puts script.to_s
+            end
+            puts
+            puts "##############################"
+            puts "Images:"
+            puts "##############################"
+            page[:images].each do |image|
+              puts image.to_s
+            end
+          end
+        end
+      when "exit"
+        exit
+      else
+        puts "Unknown command specified."
+      end
+    rescue SystemExit
+      exit
+    rescue Exception => e
+      puts e.message
+    end
+  end
+  
+end
